@@ -1,0 +1,28 @@
+apply plugin: 'groovy'
+//apply plugin: 'maven'
+//apply plugin: 'maven-publish'
+
+dependencies {
+    compile 'com.alibaba:fastjson:1.1.50.android'
+    compile 'org.apache.httpcomponents:httpcore:4.2.2'
+    compile 'org.apache.httpcomponents:httpclient:4.2.2'
+    compile gradleApi()
+    compile localGroovy()
+}
+
+task javadocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'javadoc'
+    from "${buildDir}/javadoc"
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
