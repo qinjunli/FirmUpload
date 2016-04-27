@@ -1,6 +1,6 @@
 apply plugin: 'groovy'
 //apply plugin: 'maven'
-//apply plugin: 'maven-publish'
+apply plugin: 'maven-publish'
 
 dependencies {
     compile 'com.alibaba:fastjson:1.1.50.android'
@@ -26,3 +26,24 @@ artifacts {
     archives sourcesJar
 }
 
+
+publishing{
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+
+            groupId 'com.junliqin.toolbox'
+            artifactId 'firmupload'
+            version '1.0'
+
+        }
+    }
+
+//    repositories{
+//        maven {
+//            // change to point to your repo, e.g. http://my.org/repo
+//            url "../repo_publish"
+//        }
+//    }
+}
